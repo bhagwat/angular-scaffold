@@ -1,0 +1,117 @@
+<div class="" data-ng-controller="PersonCtrl as personCtrl" data-ng-init="personCtrl.init()">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Manage Person </h3>
+        </div>
+
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Person List
+                        <small>list of persons</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_length">
+                                    <label>Show
+                                        <select ng-model="personCtrl.pageSize" aria-controls="datatable"
+                                                class="form-control input-sm"
+                                                ng-change="personCtrl.options.currentPage=1; personCtrl.pageChanged()"
+                                                ng-options="option as option for option in [5,10,20,30,50, 60]"></select>
+                                        entries</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_filter">
+                                    <label>Search:<input type="search" class="form-control input-sm" placeholder=""
+                                                         aria-controls="datatable"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table dataTable table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th sort-field="name" on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Name
+                                        </th>
+                                        <th sort-field="position"
+                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Position
+                                        </th>
+                                        <th sort-field="office"
+                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Office
+                                        </th>
+                                        <th sort-field="age" on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Age
+                                        </th>
+                                        <th sort-field="joiningDate"
+                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Start date
+                                        </th>
+                                        <th sort-field="salary"
+                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Salary
+                                        </th>
+                                        <th sort-field="married"
+                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Married
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr data-ng-repeat="person in personCtrl.persons">
+                                        <td><span data-ng-bind="person.name"></span></td>
+                                        <td><span data-ng-bind="person.position"></span></td>
+                                        <td><span data-ng-bind="person.office"></span></td>
+                                        <td><span data-ng-bind="person.age"></span></td>
+                                        <td><span data-ng-bind="person.joiningDate|date:'short'"></span></td>
+                                        <td>$<span data-ng-bind="person.salary"></span></td>
+                                        <td><span data-ng-bind="person.male? 'YES':'NO'"></span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
+                                    Showing {{personCtrl.options.offset+1}} to {{personCtrl.options.offset+personCtrl.pageSize}} of {{personCtrl.total}} entries
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                                    <uib-pagination total-items="personCtrl.total"
+                                                    ng-model="personCtrl.options.currentPage"
+                                                    max-size="10"
+                                                    items-per-page="personCtrl.pageSize"
+                                                    ng-change="personCtrl.pageChanged()"></uib-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
