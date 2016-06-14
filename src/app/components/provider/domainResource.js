@@ -5,7 +5,8 @@
             return $resource(Configuration.API + "/:controller/:action/:id", {"id": "@id"},
                 {
                     "update": {method: "PUT"},
-                    "list": {method: "GET", params:{action: 'list'}, isArray: false}
+                    "list": {method: "GET", params: {action: 'list'}, isArray: false},
+                    "save": { method: "POST", params: {action: 'save'}}
                 });
         }
         ]);

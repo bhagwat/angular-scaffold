@@ -8,3 +8,6 @@ dist/
 nodejs/
 .idea/
 .publish/
+*.iml
+.idea
+

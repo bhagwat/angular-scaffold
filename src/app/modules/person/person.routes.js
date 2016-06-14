@@ -20,10 +20,10 @@ angular.module('app')
                         title: "List"
                     }))
                 .add(new MenuItem(20)
-                    .setState('home.person.edit', {
-                        url: '/edit/:id',
-                        templateUrl: base + 'person.edit.html',
-                        title: "New"
+                    .setState('home.person.create', {
+                        url: '/create',
+                        templateUrl: base + 'person.create.html',
+                        title: "New Person"
                     }))
         );
     }]);

@@ -1,0 +1,181 @@
+<div class="" data-ng-controller="PersonCtrl as personCtrl">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Edit Person</h3>
+        </div>
+
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Person Details
+                    </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br/>
+                    <form id="demo-form2" data-parsley-validate
+                          class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="name" required="required" ng-model="personCtrl.person.name"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="position">Position <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="position" required="required"
+                                       ng-model="personCtrl.person.position"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="office">office <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="office" required="required" ng-model="personCtrl.person.office"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="married">Married <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="married" name="married" required="required"
+                                        class="form-control col-md-7 col-xs-12" ng-model="personCtrl.person.married">
+                                    <option>Yes</option>
+                                    <option selected>No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="salary" class="control-label col-md-3 col-sm-3 col-xs-12">Salary Initial</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="salary" class="form-control col-md-7 col-xs-12" type="number"
+                                       name="salary" ng-model="personCtrl.person.salary">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="age">Age <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="number" id="age" name="age" required="required"
+                                       class="form-control col-md-7 col-xs-12" ng-model="personCtrl.person.age">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Languages
+                            </label>
+
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="languages"
+                                               ng-model="personCtrl.person.languages.english"
+                                               value="English">English
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="languages"
+                                               ng-model="personCtrl.person.languages.hindi"
+                                               value="Hindi"> &nbsp;Hindi
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="languages"
+                                               ng-model="personCtrl.person.languages.frensh"
+                                               value="French"> &nbsp;French
+                                    </label>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Gender
+                            </label>
+
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="optionsRadios1"
+                                               name="gender" value="Male" ng-model="personCtrl.person.gender"> Male
+                                    </label>
+                                    <label>
+                                        <input ng-model="personCtrl.person.gender" value="Female"
+                                               type="radio" id="optionsRadios2" name="gender">
+                                        Female
+                                    </label>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Joining <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="date" name="bday" min="2000-01-02" ng-required="true" class="form-control"
+                                       ng-model="personCtrl.person.joiningDate">
+                                <!--<input type="datetime" class="form-control" ng-model="personCtrl.person.joiningDate"-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Cancel</button>
+                                <button type="submit" data-ng-click="personCtrl.createPerson()" class="btn btn-success">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
