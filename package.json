@@ -53,9 +53,6 @@
   },
   "scripts": {
     "init": "npm install --unsafe-perm",
-    "install": "bower --allow-root prune && bower --allow-root install"
-  },
-  "devDependencies": {
-    "bower": "^1.7.9"
+    "install": "node_modules/bower/bin/bower --allow-root prune && node_modules/bower/bin/bower --allow-root install"
   }
 }
