@@ -35,13 +35,12 @@ var MenuItem = function (index) {
             navServiceProvider.setRoot(
                 new MenuItem(10)
                     .setState('home', {
-                        url: '',
                         templateUrl: 'app/views/main.html',
                         title: "General",
                         icon: 'home'
                     })
             );
-            $urlRouterProvider.otherwise('/person/list');
+            $urlRouterProvider.when('', '/person/list');
         }])
         .constant('_', window._)
         .service("Configuration", [function () {

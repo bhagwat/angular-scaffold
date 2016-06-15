@@ -1,4 +1,4 @@
-<div class="" data-ng-controller="PersonCtrl as personCtrl" data-ng-init="personCtrl.list()">
+<div class="" data-ng-controller="PersonListCtrl as listCtrl" data-ng-init="listCtrl.list()">
     <div class="page-title">
         <div class="title_left">
             <h3>Manage Person </h3>
@@ -32,9 +32,9 @@
                             <div class="col-sm-6">
                                 <div class="dataTables_length">
                                     <label>Show
-                                        <select ng-model="personCtrl.pageSize" aria-controls="datatable"
+                                        <select ng-model="listCtrl.pageSize" aria-controls="datatable"
                                                 class="form-control input-sm"
-                                                ng-change="personCtrl.options.currentPage=1; personCtrl.pageChanged()"
+                                                ng-change="listCtrl.options.currentPage=1; listCtrl.pageChanged()"
                                                 ng-options="option as option for option in [5,10,20,30,50, 60]"></select>
                                         entries</label>
                                 </div>
@@ -51,42 +51,43 @@
                                 <table class="table dataTable table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th sort-field="name" on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                        <th sort-field="id" on-change="listCtrl.sortChanged(sortField, sortOrder)">
+                                            ID
+                                        </th>
+                                        <th sort-field="name" on-change="listCtrl.sortChanged(sortField, sortOrder)">
                                             Name
                                         </th>
                                         <th sort-field="position"
-                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            on-change="listCtrl.sortChanged(sortField, sortOrder)">
                                             Position
                                         </th>
                                         <th sort-field="office"
-                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            on-change="listCtrl.sortChanged(sortField, sortOrder)">
                                             Office
                                         </th>
-                                        <th sort-field="age" on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                        <th sort-field="age" on-change="listCtrl.sortChanged(sortField, sortOrder)">
                                             Age
                                         </th>
                                         <th sort-field="joiningDate"
-                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            on-change="listCtrl.sortChanged(sortField, sortOrder)">
                                             Start date
                                         </th>
                                         <th sort-field="salary"
-                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            on-change="listCtrl.sortChanged(sortField, sortOrder)">
                                             Salary
                                         </th>
                                         <th sort-field="married"
-                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            on-change="listCtrl.sortChanged(sortField, sortOrder)">
                                             Married
                                         </th>
                                         <th>
                                             Edit
                                         </th>
-                                        <th>
-                                            Delete
-                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr data-ng-repeat="person in personCtrl.persons">
+                                    <tr data-ng-repeat="person in listCtrl.listData.instances">
+                                        <td><span data-ng-bind="person.id"></span></td>
                                         <td><span data-ng-bind="person.name"></span></td>
                                         <td><span data-ng-bind="person.position"></span></td>
                                         <td><span data-ng-bind="person.office"></span></td>
@@ -96,8 +97,6 @@
                                         <td><span data-ng-bind="person.male? 'YES':'NO'"></span></td>
                                         <td><span><a href=""
                                                      ui-sref="home.person.edit({ id: person.id })"> Edit</a></span></td>
-                                        <td><span><a href=""
-                                                     data-ng-click="personCtrl.delete(person)"> Delete</a></span></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -106,17 +105,18 @@
                         <div class="row">
                             <div class="col-sm-5">
                                 <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
-                                    Showing {{personCtrl.options.offset+1}} to
-                                    {{personCtrl.options.offset+personCtrl.pageSize}} of {{personCtrl.total}} entries
+                                    Showing {{listCtrl.options.offset+1}} to
+                                    {{listCtrl.options.offset+listCtrl.listData.instances.length}} of
+                                    {{listCtrl.listData.total}} entries
                                 </div>
                             </div>
                             <div class="col-sm-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                                    <uib-pagination total-items="personCtrl.total"
-                                                    ng-model="personCtrl.options.currentPage"
+                                    <uib-pagination total-items="listCtrl.listData.total"
+                                                    ng-model="listCtrl.options.currentPage"
                                                     max-size="10"
-                                                    items-per-page="personCtrl.pageSize"
-                                                    ng-change="personCtrl.pageChanged()"></uib-pagination>
+                                                    items-per-page="listCtrl.pageSize"
+                                                    ng-change="listCtrl.pageChanged()"></uib-pagination>
                                 </div>
                             </div>
                         </div>
