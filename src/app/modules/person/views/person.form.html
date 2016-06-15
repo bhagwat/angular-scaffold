@@ -1,7 +1,7 @@
-<div class="" data-ng-controller="PersonCtrl as personCtrl">
+<div class="" data-ng-controller="PersonCtrl as personCtrl" data-ng-init="personCtrl.load()">
     <div class="page-title">
         <div class="title_left">
-            <h3>New Person</h3>
+            <h3>{{personCtrl.pageTitle}}</h3>
         </div>
 
     </div>
@@ -10,30 +10,15 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                <div class="x_title">
-                    <h2> Details
-                    </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+
                 <div class="x_content">
-                    <br/>
-                    <form id="demo-form2" data-parsley-validate
+                    <ul class="parsley-errors-list" data-ng-show="personCtrl.errorData.message">
+                        <li>{{personCtrl.errorData.message}}</li>
+                    </ul>
+                    <ul class="parsley-errors-list" data-ng-show="personCtrl.errorData.total>1">
+                        <li data-ng-repeat="error in personCtrl.errorData._embedded.errors">{{error.message}}</li>
+                    </ul>
+                    <form novalidate name="personForm" data-parsley-validate
                           class="form-horizontal form-label-left">
 
                         <div class="form-group" data-ng-class="{bad:personCtrl.allErrorFields.indexOf('name')>-1}">
@@ -44,11 +29,6 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="name" required="required" ng-model="personCtrl.person.name"
                                        class="form-control col-md-7 col-xs-12">
-                                <ul class="parsley-errors-list filled" id="parsley-id-1">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['name']">{{error.message}}.
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,13 +39,6 @@
                                 <input type="text" id="position" required="required"
                                        ng-model="personCtrl.person.position"
                                        class="form-control col-md-7 col-xs-12">
-                                <ul class="parsley-errors-list filled" id="parsley-id-2">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['position']">
-                                        {{error.message}}.
-                                    </li>
-                                </ul>
-
                             </div>
                         </div>
                         <div class="form-group">
@@ -75,11 +48,6 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="office" required="required" ng-model="personCtrl.person.office"
                                        class="form-control col-md-7 col-xs-12">
-                                <ul class="parsley-errors-list filled" id="parsley-id-3">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['office']">{{error.message}}.
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -90,15 +58,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="married" name="married" required="required"
                                         class="form-control col-md-7 col-xs-12" ng-model="personCtrl.person.married">
-                                    <option>Yes</option>
-                                    <option selected>No</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
                                 </select>
-
-                                <ul class="parsley-errors-list filled" id="parsley-id-4">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['married']">{{error.message}}.
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -107,11 +69,6 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="salary" class="form-control col-md-7 col-xs-12" type="number"
                                        name="salary" ng-model="personCtrl.person.salary">
-                                <ul class="parsley-errors-list filled" id="parsley-id-5">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['married']">{{error.message}}.
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                         <div class="form-group">
@@ -119,22 +76,17 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" id="age" name="age" required="required"
+                                <input type="number" id="age" name="age"
                                        class="form-control col-md-7 col-xs-12" ng-model="personCtrl.person.age">
-                                <ul class="parsley-errors-list filled" id="parsley-id-6">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['age']">{{error.message}}.
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12 control-label" class="required">Languages
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Languages
                             </label>
 
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <div class="checkbox" required="">
+                                <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="languages"
                                                ng-model="personCtrl.person.languages.english"
@@ -152,26 +104,20 @@
                                     </label>
 
                                 </div>
-                                <ul class="parsley-errors-list filled" id="parsley-id-7">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['languages']">
-                                        {{error.message}}.
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12 control-label" class="required">Gender
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Gender
                             </label>
 
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" id="optionsRadios1" required=""
+                                        <input type="radio" id="optionsRadios1"
                                                name="gender" value="Male" ng-model="personCtrl.person.gender"> Male
                                     </label>
                                     <label>
-                                        <input ng-model="personCtrl.person.gender" value="Female" required=""
+                                        <input ng-model="personCtrl.person.gender" value="Female"
                                                type="radio" id="optionsRadios2" name="gender">
                                         Female
                                     </label>
@@ -186,28 +132,29 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="date" name="bday" min="2000-01-02" ng-required="true" class="form-control"
-                                       ng-model="personCtrl.person.joiningDate">
-                                <ul class="parsley-errors-list filled" id="parsley-id-8">
-                                    <li class="parsley-required"
-                                        data-ng-repeat="error in personCtrl.groupedErrors['joiningDate']">
-                                        {{error.message}}.
-                                    </li>
-                                </ul>
+                                <input type="text"
+                                       class="form-control"
+                                       uib-datepicker-popup="yyyy-MM-dd"
+                                       ng-model="personCtrl.person.joiningDate"
+                                       is-open="personCtrl.dateSettings.open"
+                                       data-ng-click="personCtrl.dateSettings.open=!personCtrl.dateSettings.open"
+                                       ng-required="true"
+                                       close-text="Close"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <br>
-                                <button type="submit" class="btn btn-primary">Cancel</button>
-                                <button type="submit" data-ng-click="personCtrl.savePerson()" class="btn btn-success">
+                                <a ui-sref="home.person.list" class="btn btn-primary" data-ng-show="personForm.$dirty">Cancel</a>
+                                <button type="submit"
+                                        data-ng-disabled="personForm.$invalid"
+                                        data-ng-click="personCtrl.savePerson()"
+                                        class="btn btn-success">
                                     Submit
                                 </button>
                             </div>
                         </div>
-
                         <div class="ln_solid"></div>
-
                     </form>
                 </div>
             </div>

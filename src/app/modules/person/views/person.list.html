@@ -1,4 +1,4 @@
-<div class="" data-ng-controller="PersonCtrl as personCtrl" data-ng-init="personCtrl.init()">
+<div class="" data-ng-controller="PersonCtrl as personCtrl" data-ng-init="personCtrl.list()">
     <div class="page-title">
         <div class="title_left">
             <h3>Manage Person </h3>
@@ -77,12 +77,10 @@
                                             on-change="personCtrl.sortChanged(sortField, sortOrder)">
                                             Married
                                         </th>
-                                        <th sort-field="married"
-                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                        <th>
                                             Edit
                                         </th>
-                                        <th sort-field="married"
-                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                        <th>
                                             Delete
                                         </th>
                                     </tr>
@@ -96,8 +94,10 @@
                                         <td><span data-ng-bind="person.joiningDate|date:'short'"></span></td>
                                         <td>$<span data-ng-bind="person.salary"></span></td>
                                         <td><span data-ng-bind="person.male? 'YES':'NO'"></span></td>
-                                        <td><span><a href="" data-ng-click="personCtrl.fillPersonDetails(person)"> Edit</a></span></td>
-                                        <td><span><a href="" data-ng-click="personCtrl.delete(person)"> Delete</a></span> </td>
+                                        <td><span><a href=""
+                                                     ui-sref="home.person.edit({ id: person.id })"> Edit</a></span></td>
+                                        <td><span><a href=""
+                                                     data-ng-click="personCtrl.delete(person)"> Delete</a></span></td>
                                     </tr>
                                     </tbody>
                                 </table>

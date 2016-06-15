@@ -6,6 +6,7 @@ var MenuItem = function (index) {
     _self.state = "";
     _self.icon = "";
     _self.title = "";
+    _self.hidden = false;
     _self.items = [];
 
     _self.add = function (item) {
@@ -18,6 +19,7 @@ var MenuItem = function (index) {
         _self.state = state;
         _self.icon = config.icon || '';
         _self.title = config.title || state;
+        _self.hidden = angular.isDefined(config.hidden) ? config.hidden : false;
         _self.config = config;
         return _self;
     };
@@ -27,7 +29,7 @@ var MenuItem = function (index) {
 
 (function () {
     'use strict';
-    angular.module('app', ['ngResource','ngAnimate', 'toastr', 'ui.bootstrap', 'ui.router'])
+    angular.module('app', ['ngResource', 'ngAnimate', 'toastr', 'ui.bootstrap', 'ui.router'])
         .config(["$urlRouterProvider", "$stateProvider", "navServiceProvider", function ($urlRouterProvider, $stateProvider, navServiceProvider) {
             navServiceProvider.setStateProvider($stateProvider);
             navServiceProvider.setRoot(

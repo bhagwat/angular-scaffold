@@ -11,7 +11,8 @@ angular.module('app')
                     url: '/table',
                     template: '<ui-view/>',
                     title: "Tables",
-                    icon: 'table'
+                    icon: 'table',
+                    hidden: true
                 })
                 .add(new MenuItem(10)
                     .setState('home.table.simple', {

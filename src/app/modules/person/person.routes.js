@@ -22,15 +22,15 @@ angular.module('app')
                 .add(new MenuItem(20)
                     .setState('home.person.create', {
                         url: '/create',
-                        templateUrl: base + 'person.create.html',
+                        templateUrl: base + 'person.form.html',
                         title: "New Person"
                     }))
                 .add(new MenuItem(20)
                     .setState('home.person.edit', {
-                        url: '/edit',
-                        templateUrl: base + 'person.edit.html',
+                        url: '/edit/:id',
+                        templateUrl: base + 'person.form.html',
                         title: "Edit Person",
-                        params: {person: null}
+                        hidden: true
                     }))
         );
     }]);

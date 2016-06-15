@@ -25,8 +25,8 @@
             <div class="menu_section">
                 <h3>{{navMenuCtrl.root.title}}</h3>
                 <ul class="nav side-menu">
-
                     <li data-ng-repeat="menuItem in navMenuCtrl.root.items|orderBy:'index'"
+                        data-ng-hide="menuItem.hidden"
                         data-ng-class="{active:navMenuCtrl.activeMenuStat==menuItem.state}"
                         data-ng-click="navMenuCtrl.activeMenuStat=menuItem.state">
                         <a><i class="fa fa-{{menuItem.icon}}"></i> {{menuItem.title}}
@@ -34,6 +34,7 @@
                         <ul class="nav child_menu" data-ng-if="menuItem.items"
                             data-ng-style="{display: navMenuCtrl.activeMenuStat==menuItem.state? 'block':'none'}">
                             <li data-ng-repeat="subMenuItem in menuItem.items|orderBy:'index'"
+                                data-ng-hide="subMenuItem.hidden"
                                 data-ng-class="{'current-page':navMenuCtrl.activePageStat==subMenuItem.state}"
                                 data-ng-click="navMenuCtrl.activePageStat=subMenuItem.state">
                                 <a ui-sref="{{subMenuItem.state}}">{{subMenuItem.title}}</a>
