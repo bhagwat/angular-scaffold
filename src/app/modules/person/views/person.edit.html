@@ -1,7 +1,7 @@
 <div class="" data-ng-controller="PersonCtrl as personCtrl">
     <div class="page-title">
         <div class="title_left">
-            <h3>New Person</h3>
+            <h3>Edit Person</h3>
         </div>
 
     </div>
@@ -10,27 +10,7 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                <div class="x_title">
-                    <h2> Details
-                    </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
+
                 <div class="x_content">
                     <br/>
                     <form id="demo-form2" data-parsley-validate
@@ -90,8 +70,8 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="married" name="married" required="required"
                                         class="form-control col-md-7 col-xs-12" ng-model="personCtrl.person.married">
-                                    <option>Yes</option>
-                                    <option selected>No</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
                                 </select>
 
                                 <ul class="parsley-errors-list filled" id="parsley-id-4">
@@ -130,11 +110,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12 control-label" class="required">Languages
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Languages
                             </label>
 
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <div class="checkbox" required="">
+                                <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="languages"
                                                ng-model="personCtrl.person.languages.english"
@@ -161,17 +141,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12 control-label" class="required">Gender
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Gender
                             </label>
 
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" id="optionsRadios1" required=""
+                                        <input type="radio" id="optionsRadios1"
                                                name="gender" value="Male" ng-model="personCtrl.person.gender"> Male
                                     </label>
                                     <label>
-                                        <input ng-model="personCtrl.person.gender" value="Female" required=""
+                                        <input ng-model="personCtrl.person.gender" value="Female"
                                                type="radio" id="optionsRadios2" name="gender">
                                         Female
                                     </label>
@@ -205,9 +185,7 @@
                                 </button>
                             </div>
                         </div>
-
                         <div class="ln_solid"></div>
-
                     </form>
                 </div>
             </div>

@@ -77,6 +77,14 @@
                                             on-change="personCtrl.sortChanged(sortField, sortOrder)">
                                             Married
                                         </th>
+                                        <th sort-field="married"
+                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Edit
+                                        </th>
+                                        <th sort-field="married"
+                                            on-change="personCtrl.sortChanged(sortField, sortOrder)">
+                                            Delete
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -88,6 +96,8 @@
                                         <td><span data-ng-bind="person.joiningDate|date:'short'"></span></td>
                                         <td>$<span data-ng-bind="person.salary"></span></td>
                                         <td><span data-ng-bind="person.male? 'YES':'NO'"></span></td>
+                                        <td><span><a href="" data-ng-click="personCtrl.fillPersonDetails(person)"> Edit</a></span></td>
+                                        <td><span><a href="" data-ng-click="personCtrl.delete(person)"> Delete</a></span> </td>
                                     </tr>
                                     </tbody>
                                 </table>

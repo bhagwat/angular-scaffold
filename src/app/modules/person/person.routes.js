@@ -25,5 +25,12 @@ angular.module('app')
                         templateUrl: base + 'person.create.html',
                         title: "New Person"
                     }))
+                .add(new MenuItem(20)
+                    .setState('home.person.edit', {
+                        url: '/edit',
+                        templateUrl: base + 'person.edit.html',
+                        title: "Edit Person",
+                        params: {person: null}
+                    }))
         );
     }]);
