@@ -19,7 +19,20 @@
                     </ul>
                     <form name="editForm"
                           class="form-horizontal form-label-left">
+                        <div>{{formCtrl.person|json}}</div>
+                        <div class="form-group" data-ng-class="{bad:formCtrl.allErrorFields.indexOf('name')>-1}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Address <span
+                                    class="required">*</span>
+                            </label>
 
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select relation-selector class="form-control col-md-7 col-xs-12"
+                                        ng-model="formCtrl.person.address"
+                                        remote-url="/address/list"
+                                        many-to-many="false">
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group" data-ng-class="{bad:formCtrl.allErrorFields.indexOf('name')>-1}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span
                                     class="required">*</span>
@@ -51,14 +64,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="married">Married <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hobby">Hobby <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="married" name="married" required="required"
-                                        class="form-control col-md-7 col-xs-12" ng-model="formCtrl.person.married">
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                <select id="hobby" name="hobby"
+                                        class="form-control col-md-7 col-xs-12" ng-model="formCtrl.person.hobby">
+                                    <option value="CRICKET">Cricket</option>
+                                    <option value="FOOTBALL">Football</option>
+                                    <option value="HOCKEY">Hockey</option>
                                 </select>
                             </div>
                         </div>
@@ -131,16 +145,39 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text"
-                                       class="form-control"
-                                       uib-datepicker-popup="yyyy-MM-dd"
-                                       ng-model="formCtrl.person.joiningDate"
-                                       is-open="formCtrl.dateSettings.open"
-                                       data-ng-click="formCtrl.dateSettings.open=!formCtrl.dateSettings.open"
-                                       ng-required="true"
-                                       close-text="Close"/>
+                                <p class="input-group">
+                                    <input type="text"
+                                           class="form-control"
+                                           uib-datepicker-popup="yyyy-MM-dd"
+                                           ng-model="formCtrl.person.joiningDate"
+                                           is-open="formCtrl.dateSettings.joiningDate.open"
+                                           data-ng-click="formCtrl.dateSettings.joiningDate.open=!formCtrl.dateSettings.joiningDate.open"
+                                           ng-required="true"
+                                           close-text="Close"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"
+                                            data-ng-click="formCtrl.dateSettings.joiningDate.open=!formCtrl.dateSettings.joiningDate.open">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                                </p>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">
+                            </label>
+
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="formCtrl.person.married" ng-true-value="true"
+                                               ng-false-value="false">
+                                        Married
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <br>
