@@ -145,12 +145,21 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <br>
-                                <button type="button"
+                                <button
                                         data-ng-show="formCtrl.person.id"
-                                        data-ng-click="formCtrl.delete()"
-                                        class="btn btn-danger">
+                                        class="btn btn-danger"
+                                        mwl-confirm
+                                        title=" Are you sure?"
+                                        message="Are you really <b>sure</b> you want to do this?"
+                                        confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>"
+                                        cancel-text="No <i class='glyphicon glyphicon-remove'></i>"
+                                        on-confirm="formCtrl.delete()"
+                                        on-cancel="cancelClicked =true"
+                                        confirm-button-type="danger"
+                                        cancel-button-type="default">
                                     Delete
                                 </button>
+
                                 <a ui-sref="home.person.list"
                                    class="btn btn-primary"
                                    data-ng-show="editForm.$dirty">Cancel</a>

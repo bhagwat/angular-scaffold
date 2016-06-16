@@ -24,16 +24,14 @@
                     };
 
                     self.delete = function () {
-                        if (confirm("Are you sure you want to delete?")) {
-                            Person.delete(self.person,
-                                function () {
-                                    $state.go('^.list');
-                                    toastr.success('Person deleted successfully.', "Delete");
-                                }, function (error) {
-                                    toastr.error('Failed to delete. Please try  again.', "Delete");
-                                }
-                            );
-                        }
+                        Person.delete(self.person,
+                            function () {
+                                $state.go('^.list');
+                                toastr.success('Person deleted successfully.', "Delete");
+                            }, function (error) {
+                                toastr.error('Failed to delete. Please try  again.', "Delete");
+                            }
+                        );
                     };
 
                 }]);
