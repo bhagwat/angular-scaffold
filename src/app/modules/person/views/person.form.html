@@ -5,7 +5,6 @@
             <h3 data-ng-show="formCtrl.person.id">Edit Person</h3>
         </div>
     </div>
-
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -18,7 +17,7 @@
                     <ul class="parsley-errors-list" data-ng-show="formCtrl.errorData.total>1">
                         <li data-ng-repeat="error in formCtrl.errorData._embedded.errors">{{error.message}}</li>
                     </ul>
-                    <form novalidate name="editForm" data-parsley-validate
+                    <form name="editForm"
                           class="form-horizontal form-label-left">
 
                         <div class="form-group" data-ng-class="{bad:formCtrl.allErrorFields.indexOf('name')>-1}">
@@ -159,16 +158,15 @@
                                         cancel-button-type="default">
                                     Delete
                                 </button>
-
                                 <a ui-sref="home.person.list"
                                    class="btn btn-primary"
                                    data-ng-show="editForm.$dirty">Cancel</a>
-                                <a data-ng-disabled="editForm.$invalid"
-                                   data-ng-click="formCtrl.savePerson()"
-                                   class="btn btn-success">
+                                <button type="submit"
+                                        data-ng-click="editForm.$valid && formCtrl.savePerson()"
+                                        class="btn btn-success">
                                     <span data-ng-hide="formCtrl.person.id">Save</span>
                                     <span data-ng-show="formCtrl.person.id">Update</span>
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <div class="ln_solid"></div>

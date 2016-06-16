@@ -4,12 +4,10 @@
             ["Person", "$state", "$stateParams", "toastr",
                 function (Person, $state, $stateParams, toastr) {
                     var self = this;
-
                     self.load = function () {
                         self.errorData = null;
                         self.person = $stateParams.id ? Person.edit({id: $stateParams.id}) : Person.create();
                     };
-
                     self.savePerson = function () {
                         Person.save({person: self.person},
                             function (person) {
@@ -22,7 +20,6 @@
                             }
                         );
                     };
-
                     self.delete = function () {
                         Person.delete(self.person,
                             function () {
