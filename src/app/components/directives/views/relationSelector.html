@@ -1,1 +1,3 @@
-<option data-ng-repeat="entity in relationSelectorCtrl.entities">{{entity}}</option>
+<option value="" selected>Select City</option>
+<option data-ng-repeat="entity in relationSelectorCtrl.entities" value="{{entity.city}}">{&#34;city&#34;:&#34;{{entity.city}}&#34;}</option>
+

@@ -16,7 +16,8 @@
     "font-awesome": "^4.6.3",
     "lodash": "^4.13.1",
     "angular-toastr": "^1.7.0",
-    "angular-bootstrap-confirm": "^2.3.0"
+    "angular-bootstrap-confirm": "^2.3.0",
+    "angular-messages": "^1.5.7"
   },
   "overrides": {
     "bootstrap": {

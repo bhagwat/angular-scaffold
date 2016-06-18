@@ -11,46 +11,55 @@
             <div class="x_panel">
 
                 <div class="x_content">
-                    <ul class="parsley-errors-list" data-ng-show="formCtrl.errorData.message">
-                        <li>{{formCtrl.errorData.message}}</li>
+                    <ul class="parsley-errors-list" data-ng-show="formCtrl.errorData">
+                        <li data-ng-repeat="error in formCtrl.errorData.errors">{{error.message}}</li>
                     </ul>
-                    <ul class="parsley-errors-list" data-ng-show="formCtrl.errorData.total>1">
-                        <li data-ng-repeat="error in formCtrl.errorData._embedded.errors">{{error.message}}</li>
-                    </ul>
-                    <form name="editForm"
-                          class="form-horizontal form-label-left">
-                        <div>{{formCtrl.person|json}}</div>
-                        <div class="form-group" data-ng-class="{bad:formCtrl.allErrorFields.indexOf('name')>-1}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Address <span
-                                    class="required">*</span>
-                            </label>
 
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select relation-selector class="form-control col-md-7 col-xs-12"
-                                        ng-model="formCtrl.person.address"
-                                        remote-url="/address/list"
-                                        many-to-many="false">
-                                </select>
-                            </div>
-                        </div>
+                    <form novalidate name="editForm"
+                          class="form-horizontal form-label-left">
                         <div class="form-group" data-ng-class="{bad:formCtrl.allErrorFields.indexOf('name')>-1}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span
                                     class="required">*</span>
                             </label>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="name" required="required" ng-model="formCtrl.person.name"
-                                       class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="name" name="name" ng-model="formCtrl.person.name"
+                                       class="form-control col-md-7 col-xs-12" required/>
+                                <div ng-messages="editForm.name.$error" ng-if="formCtrl.buttonClicked" role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Address <span
+                                    class="required">*</span>
+                            </label>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select required="required" name="address" id="address" relation-selector
+                                        class="form-control col-md-7 col-xs-12 ng-valid ng-dirty"
+                                        ng-model="formCtrl.person.address.city"
+                                        remote-url="/address/list"
+                                        many-to-many="false">
+                                    <option ng-selected="true">{{formCtrl.person.address}}</option>
+                                </select>
+                                <div ng-messages="editForm.address.$error" ng-if="formCtrl.buttonClicked" role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="position">Position <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="position" required="required"
+                                <input type="text" id="position" required="required" name="position"
                                        ng-model="formCtrl.person.position"
                                        class="form-control col-md-7 col-xs-12">
+                                <div ng-messages="editForm.position.$error" ng-if="formCtrl.buttonClicked" role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -58,8 +67,12 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="office" required="required" ng-model="formCtrl.person.office"
+                                <input type="text" name="office" id="office" required="required"
+                                       ng-model="formCtrl.person.office"
                                        class="form-control col-md-7 col-xs-12">
+                                <div ng-messages="editForm.office.$error" ng-if="formCtrl.buttonClicked" role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                </div>
                             </div>
                         </div>
 
@@ -69,19 +82,28 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="hobby" name="hobby"
-                                        class="form-control col-md-7 col-xs-12" ng-model="formCtrl.person.hobby">
+                                        required="" class="form-control col-md-7 col-xs-12"
+                                        ng-model="formCtrl.person.hobby">
                                     <option value="CRICKET">Cricket</option>
                                     <option value="FOOTBALL">Football</option>
                                     <option value="HOCKEY">Hockey</option>
                                 </select>
+                                <div ng-messages="editForm.hobby.$error" ng-if="formCtrl.buttonClicked" role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="salary" class="control-label col-md-3 col-sm-3 col-xs-12">Salary Initial</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="salary" class="form-control col-md-7 col-xs-12" type="number"
-                                       name="salary" ng-model="formCtrl.person.salary">
+                                <input id="salary" required class="form-control col-md-7 col-xs-12" type="number"
+                                       name="salary" ng-model="formCtrl.person.salary" min="1000" max="10000"/>
+                                <div ng-messages="editForm.salary.$error" ng-if="formCtrl.buttonClicked" role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                    <div class="error-danger" ng-message="min">Salary can't be less than 1000</div>
+                                    <div class="error-danger" ng-message="max">Salary can't be Greater than 10000</div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,8 +111,13 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" id="age" name="age"
+                                <input type="number" id="age" name="age" ng-max="65" required ng-min="18"
                                        class="form-control col-md-7 col-xs-12" ng-model="formCtrl.person.age">
+                                <div ng-messages="editForm.age.$error" ng-if="formCtrl.buttonClicked" role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                    <div class="error-danger" ng-message="min">Age can't be less than 18</div>
+                                    <div class="error-danger" ng-message="max">Age can't be greatar than 65</div>
+                                </div>
                             </div>
                         </div>
 
@@ -139,30 +166,6 @@
 
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Joining <span
-                                    class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <p class="input-group">
-                                    <input type="text"
-                                           class="form-control"
-                                           uib-datepicker-popup="yyyy-MM-dd"
-                                           ng-model="formCtrl.person.joiningDate"
-                                           is-open="formCtrl.dateSettings.joiningDate.open"
-                                           data-ng-click="formCtrl.dateSettings.joiningDate.open=!formCtrl.dateSettings.joiningDate.open"
-                                           ng-required="true"
-                                           close-text="Close"/>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default"
-                                            data-ng-click="formCtrl.dateSettings.joiningDate.open=!formCtrl.dateSettings.joiningDate.open">
-                                        <i class="glyphicon glyphicon-calendar"></i>
-                                    </button>
-                                </span>
-                                </p>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12 control-label">
                             </label>
@@ -171,10 +174,44 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" ng-model="formCtrl.person.married" ng-true-value="true"
-                                               ng-false-value="false">
+                                               required name="married" ng-false-value="false">
                                         Married
+                                        <div ng-messages="editForm.married.$error" ng-if="formCtrl.buttonClicked"
+                                             role="alert">
+                                            <div class="error-danger" ng-message="required">This field is required</div>
+                                        </div>
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Joining <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="input-group">
+                                    <input type="text" name="joiningDate"
+                                           class="form-control"
+                                           uib-datepicker-popup="yyyy-MM-dd"
+                                           ng-model="formCtrl.person.joiningDate"
+                                           is-open="formCtrl.dateSettings.joiningDate.open"
+                                           data-ng-click="formCtrl.dateSettings.joiningDate.open=!formCtrl.dateSettings.joiningDate.open"
+                                           required
+                                           close-text="Close"/>
+
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"
+                                            data-ng-click="formCtrl.dateSettings.joiningDate.open=!formCtrl.dateSettings.joiningDate.open">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                                <div ng-messages="editForm.joiningDate.$error" ng-if="formCtrl.buttonClicked"
+                                     role="alert">
+                                    <div class="error-danger" ng-message="required">This field is required</div>
+                                </div>
+
+                                </p>
                             </div>
                         </div>
 
@@ -199,7 +236,7 @@
                                    class="btn btn-primary"
                                    data-ng-show="editForm.$dirty">Cancel</a>
                                 <button type="submit"
-                                        data-ng-click="editForm.$valid && formCtrl.savePerson()"
+                                        data-ng-click="formCtrl.savePerson(editForm)"
                                         class="btn btn-success">
                                     <span data-ng-hide="formCtrl.person.id">Save</span>
                                     <span data-ng-show="formCtrl.person.id">Update</span>

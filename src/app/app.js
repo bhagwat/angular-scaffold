@@ -29,7 +29,7 @@ var MenuItem = function (index) {
 
 (function () {
     'use strict';
-    angular.module('app', ['ngResource', 'ngAnimate', 'toastr', 'ui.bootstrap', 'ui.router','mwl.confirm'])
+    angular.module('app', ['ngResource', 'ngAnimate', 'toastr', 'ui.bootstrap', 'ui.router','mwl.confirm','ngMessages'])
         .config(["$urlRouterProvider", "$stateProvider", "navServiceProvider", function ($urlRouterProvider, $stateProvider, navServiceProvider) {
             navServiceProvider.setStateProvider($stateProvider);
             navServiceProvider.setRoot(
